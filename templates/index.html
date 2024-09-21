@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AI Generated Poetry</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <h1>AI Generated Poetry</h1>
+            <form method="POST">
+                <input type="text" id="keywords" name="keywords" placeholder="Enter words you want in Poetry" required>
+                <select id="language" name="language" required>
+                    <option selected value="english">Select Language</option>
+                    <option value="english">English</option>
+                    <option value="hindi">Hindi</option>
+                </select><br>
+                <button type="submit">😎 Generate 🥰</button>
+            </form>
+            <div>
+                {% if generated_text %}
+                <hr>
+                <h2>Generated Poetry</h2>
+                <p>{{ generated_text | safe }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    <script>
+        // Function to generate a random hex color
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Add event listener to form submission
+        document.querySelector('form').addEventListener('submit', function() {
+            var randomColor1 = getRandomColor();
+            var randomColor2 = getRandomColor();
+            document.body.style.background = `linear-gradient(to bottom right, ${randomColor1}, ${randomColor2})`;
+        });
+    </script>
+
+</body>
+
+</html>
